@@ -68,7 +68,8 @@ class MagicalCreature(MagicalEntity):
     def performSpell(self, spell):
         print(f"{self.species} піддається впливу {spell.spell_type} заклинання {spell.name}")
 
-        # Основна школа  class MagicSchool:
+        # Основна школа
+class MagicSchool:
         def __init__(self, name):
             self.name = name
             self.students = []
