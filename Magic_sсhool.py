@@ -67,7 +67,65 @@ class MagicalCreature(MagicalEntity):
 
     def performSpell(self, spell):
         print(f"{self.species} піддається впливу {spell.spell_type} заклинання {spell.name}")
-# напиши функції до менюшки
+
+        # Основна школа  class MagicSchool:
+        def __init__(self, name):
+            self.name = name
+            self.students = []
+            self.professors = []
+            self.artifacts = []
+            self.creatures = []
+            self.lessons = []
+
+        def addStudent(self, student):
+            self.students.append(student)
+            print(f"{student.name} доданий до школи.")
+
+        def addProfessor(self, professor):
+            self.professors.append(professor)
+            print(f"Професор {professor.name} додається до школи.")
+
+        def addArtifact(self, artifact):
+            self.artifacts.append(artifact)
+            print(f"Артефакт {artifact.name} додано до школи.")
+
+        def addCreature(self, creature):
+            self.creatures.append(creature)
+            print(f"Магічна істота {creature.species} додана до школи.")
+
+        def addLesson(self, lesson):
+            self.lessons.append(lesson)
+            print(f"Додано урок: {lesson.name} ({lesson.lesson_type})")
+
+        def teachMagic(self):
+            for professor in self.professors:
+                for student in self.students:
+                    professor.teachMagic(student)
+
+        def organizeEvent(self, event):
+            print(f"Організовано подію: {event.event_name}")
+            event.organizeEvent()
+
+        def investigateMystery(self):
+            print("Розслідування магічної таємниці розпочато!")
+
+        def handleThreat(self):
+            print("Протидія магічній загрозі активована!")
+
+        def studyCreature(self, species_name):
+            creature = next((c for c in self.creatures if c.species == species_name), None)
+            if creature:
+                print(f"Ви починаєте вивчення магічної істоти: {creature.species}")
+            else:
+                print("Істоту з таким ім'ям не знайдено.")
+
+        def conductLesson(self, lesson_index):
+            if 0 <= lesson_index < len(self.lessons):
+                self.lessons[lesson_index].conductLesson()
+            else:
+                print("Невірний вибір уроку.")
+
+
     print("\n--- Меню ---")
     print("1. Додати студента")
     print("2. Додати професора")
