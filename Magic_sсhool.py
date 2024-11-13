@@ -27,3 +27,43 @@ class MagicalEvent:
 
     def organizeEvent(self):
         print(f"Організація події '{self.event_name}': {self.description}")
+# Клас для магічних уроків
+class Lesson:
+    def __init__(self, name, lesson_type):
+        self.name = name
+        self.lesson_type = lesson_type  # Тип уроку, наприклад, зіллєваріння, трансфігурація, захист від темних мистецтв
+
+    def conductLesson(self):
+        print(f"Проводиться урок {self.lesson_type}: {self.name}")
+
+# Клас студента з магічними здібностями
+class Student(MagicalEntity):
+    def __init__(self, name, power_level):
+        self.name = name
+        self.power_level = power_level
+
+    def performSpell(self, spell):
+        print(f"{self.name} використовує заклинання {spell.name} типу {spell.spell_type}!")
+        self.power_level += spell.power_boost
+
+# Клас професора з магічною спеціалізацією
+class Professor(MagicalEntity):
+    def __init__(self, name, specialty):
+        self.name = name
+        self.specialty = specialty
+
+    def teachMagic(self, student):
+        print(f"{self.name} навчає {student.name} магії {self.specialty}")
+        student.power_level += 10
+
+    def performSpell(self, spell):
+        print(f"{self.name} використовує {spell.spell_type} заклинання {spell.name}")
+
+# Клас для магічних істот
+class MagicalCreature(MagicalEntity):
+    def __init__(self, species, danger_level):
+        self.species = species
+        self.danger_level = danger_level
+
+    def performSpell(self, spell):
+        print(f"{self.species} піддається впливу {spell.spell_type} заклинання {spell.name}")
