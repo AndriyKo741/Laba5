@@ -67,3 +67,16 @@ class MagicalCreature(MagicalEntity):
 
     def performSpell(self, spell):
         print(f"{self.species} піддається впливу {spell.spell_type} заклинання {spell.name}")
+# напиши функції до менюшки
+    print("\n--- Меню ---")
+    print("1. Додати студента")
+    print("2. Додати професора")
+    print("3. Додати артефакт")
+    print("4. Додати магічну істоту")
+    print("5. Додати урок")
+    print("6. Провести урок магії")
+    print("7. Вивчити магічну істоту")
+    print("8. Організувати магічну подію")
+    print("9. Розслідувати таємницю")
+    print("10. Протидіяти загрозі")
+    print("11. Вийти")
