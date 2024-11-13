@@ -125,16 +125,119 @@ class MagicalCreature(MagicalEntity):
             else:
                 print("Невірний вибір уроку.")
 
+# Меню для взаємодії з користувачем
+def main():
+    school = MagicSchool("Школа Чарів")
 
-    print("\n--- Меню ---")
-    print("1. Додати студента")
-    print("2. Додати професора")
-    print("3. Додати артефакт")
-    print("4. Додати магічну істоту")
-    print("5. Додати урок")
-    print("6. Провести урок магії")
-    print("7. Вивчити магічну істоту")
-    print("8. Організувати магічну подію")
-    print("9. Розслідувати таємницю")
-    print("10. Протидіяти загрозі")
-    print("11. Вийти")
+    # Додавання прикладів уроків
+    school.addLesson(Lesson("Зіллєваріння", "Практичний"))
+    school.addLesson(Lesson("Трансфігурація", "Теоретичний"))
+    school.addLesson(Lesson("Захист від темних мистецтв", "Захисний"))
+
+    while True:
+        print("\n--- Меню ---")
+        print("1. Додати студента")
+        print("2. Додати професора")
+        print("3. Додати артефакт")
+        print("4. Додати магічну істоту")
+        print("5. Додати урок")
+        print("6. Провести урок магії")
+        print("7. Вивчити магічну істоту")
+        print("8. Організувати магічну подію")
+        print("9. Розслідувати таємницю")
+        print("10. Протидіяти загрозі")
+        print("11. Вийти")
+
+        choice = input("Оберіть опцію: ")
+
+        if choice == "1":
+            name = input("Введіть ім'я студента: ")
+            if not name.strip():
+                print("Ім'я студента не може бути порожнім.")
+                continue
+            try:
+                power_level = int(input("Введіть рівень сили студента: "))
+            except ValueError:
+                print("Рівень сили має бути числом.")
+                continue
+            student = Student(name, power_level)
+            school.addStudent(student)
+
+        elif choice == "2":
+            name = input("Введіть ім'я професора: ")
+            if not name.strip():
+                print("Ім'я професора не може бути порожнім.")
+                continue
+            specialty = input("Введіть спеціалізацію професора: ")
+            if not specialty.strip():
+                print("Спеціалізація професора не може бути порожньою.")
+                continue
+            professor = Professor(name, specialty)
+            school.addProfessor(professor)
+
+        elif choice == "3":
+            name = input("Введіть назву артефакту: ")
+            try:
+                effect = int(input("Введіть силу ефекту артефакту: "))
+            except ValueError:
+                print("Сила ефекту має бути числом.")
+                continue
+            artifact = Artifact(name, effect)
+            school.addArtifact(artifact)
+
+        elif choice == "4":
+            species = input("Введіть вид магічної істоти: ")
+            try:
+                danger_level = int(input("Введіть рівень небезпеки: "))
+            except ValueError:
+                print("Рівень небезпеки має бути числом.")
+                continue
+            creature = MagicalCreature(species, danger_level)
+            school.addCreature(creature)
+
+        elif choice == "5":
+            name = input("Введіть назву уроку: ")
+            lesson_type = input("Введіть тип уроку (наприклад, зіллєваріння, захист від темних мистецтв): ")
+            lesson = Lesson(name, lesson_type)
+            school.addLesson(lesson)
+
+        elif choice == "6":
+            # Показати список уроків
+            print("\n--- Список уроків ---")
+            for i, lesson in enumerate(school.lessons, start=1):
+                print(f"{i}. {lesson.name} ({lesson.lesson_type})")
+
+            try:
+                lesson_choice = int(input("Оберіть номер уроку для вивчення: ")) - 1
+                school.conductLesson(lesson_choice)
+            except ValueError:
+                print("Будь ласка, введіть правильний номер.")
+            except IndexError:
+                print("Невірний вибір уроку.")
+
+        elif choice == "7":
+            species_name = input("Введіть назву магічної істоти для вивчення: ")
+            school.studyCreature(species_name)
+
+        elif choice == "8":
+            event_name = input("Введіть назву події: ")
+            description = input("Введіть опис події: ")
+            event = MagicalEvent(event_name, description)
+            school.organizeEvent(event)
+
+        elif choice == "9":
+            school.investigateMystery()
+
+        elif choice == "10":
+            school.handleThreat()
+
+        elif choice == "11":
+            print("Завершення програми.")
+            break
+
+        else:
+            print("Неправильний вибір, спробуйте ще раз.")
+
+    # Запуск головного меню
+    if __name__ == "__main__":
+        main()
