@@ -10,7 +10,7 @@ class MagicalEntity(ABC):
 class Spell:
     def __init__(self, name, spell_type, power_boost):
         self.name = name
-        self.spell_type = spell_type  # тип заклинання (атакуюче, захисне, трансформаційне)
+        self.spell_type = spell_type
         self.power_boost = power_boost
 
 # Клас для артефактів
@@ -27,6 +27,7 @@ class MagicalEvent:
 
     def organizeEvent(self):
         print(f"Організація події '{self.event_name}': {self.description}")
+
 # Клас для магічних уроків
 class Lesson:
     def __init__(self, name, lesson_type):
@@ -240,5 +241,5 @@ def main():
             print("Неправильний вибір, спробуйте ще раз.")
 
     # Запуск головного меню
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()
